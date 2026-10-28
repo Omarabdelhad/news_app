@@ -6,6 +6,8 @@ import 'package:news_app/core/resources/assets_manager.dart';
 import 'package:news_app/core/resources/strings_manager.dart';
 import 'package:news_app/models/category_model.dart';
 import 'package:news_app/screens/widgets/app_drawer.dart';
+import 'package:news_app/screens/widgets/category_widgets/category_widget.dart';
+import 'package:news_app/screens/widgets/articles_widget/articleswidget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -35,23 +37,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: Padding(
-        padding: REdgeInsets.symmetric(horizontal: 16),
-        child: Column(
-          spacing: 16,
-          mainAxisAlignment: .start,
-          crossAxisAlignment: .start,
-          children: [
-            SizedBox(height: 16.h),
-            Text(
-              StringsManager.welcome,
-              style: Theme.of(
-                context,
-              ).textTheme.headlineMedium?.copyWith(fontWeight: .w500),
-            ),
-          ],
-        ),
+      body: selectedCategory != null ? ArticlesWidget() : CategoryWidget(
+        onCategoryClicked: chooseCategory,
       ),
     );
+  }
+   void chooseCategory(CategoryModel newCategory) {
+    selectedCategory = newCategory;
+    setState(() {});
+  }
+   void unselectCategory() {
+    selectedCategory = null;
+    Navigator.of(context).pop();
+    setState(() {});
   }
 }
