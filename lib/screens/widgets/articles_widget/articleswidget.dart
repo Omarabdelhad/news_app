@@ -73,7 +73,7 @@ class _ArticlesWidgetState extends State<ArticlesWidget> {
                     padding: REdgeInsetsDirectional.only(end: 16),
                     child: TabBarView(
                       children: sources
-                          .map((source) => ArticleList())
+                          .map((source) => ArticleList(sourceId: source.id??'',))
                           .toList(),
                     ),
                   ),

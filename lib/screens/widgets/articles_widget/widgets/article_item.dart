@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/resources/app_colors.dart';
+import 'package:news_app/models/articles/article.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class ArticleItem extends StatelessWidget {
-  const ArticleItem({super.key});
+  final Article article;
+  const ArticleItem({super.key, required this.article});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-            padding: REdgeInsets.all(8),
+      padding: REdgeInsets.all(8),
 
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-          color: AppColors.lightPrimaryColor
-        )
-        
+        border: Border.all(color: AppColors.lightPrimaryColor),
       ),
       child: Column(
         spacing: 10.h,
@@ -23,26 +23,27 @@ class ArticleItem extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(8.r),
             child: Image.network(
-              "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTn5gsAN8K6WZ6KCcKJAZzXBn0yzSaMYFEzYZEtsy3ODA&s",
+              article.urlToImage??'',
               height: 220.h,
               fit: BoxFit.cover,
             ),
           ),
           Text(
-            "40-year-old man falls 200 feet to his death while canyoneering at national park",
+            article.title??'',
             style: Theme.of(
               context,
             ).textTheme.headlineMedium?.copyWith(fontSize: 16.sp),
           ),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "By : Jon Haworth",
-                style: Theme.of(context).textTheme.titleSmall,
+              Expanded(
+                child: Text(
+                  "By : ${article.author??''}",
+                  style: Theme.of(context).textTheme.titleSmall,
+                ),
               ),
               Text(
-                "15 minutes ago",
+                timeago.format(DateTime.parse(article.publishedAt??'')),
                 style: Theme.of(context).textTheme.titleSmall,
               ),
             ],
