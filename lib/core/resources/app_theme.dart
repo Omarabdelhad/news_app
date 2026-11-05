@@ -29,6 +29,11 @@ abstract class AppTheme {
         color: AppColors.greyColor,
         fontSize:12.sp,
         fontWeight: FontWeight.w500
+      ),
+      bodySmall: TextStyle(
+         color: AppColors.lightSecondaryColor,
+        fontWeight: FontWeight.w500,
+        fontSize: 14.sp
       )
     ),
     tabBarTheme: TabBarThemeData(
