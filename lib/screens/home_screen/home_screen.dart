@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:news_app/core/remote/network/api_manager.dart';
 import 'package:news_app/core/resources/app_constants.dart';
 import 'package:news_app/core/resources/assets_manager.dart';
 import 'package:news_app/core/resources/strings_manager.dart';
@@ -18,6 +19,14 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   CategoryModel? selectedCategory;
+  @override
+  void initState() {
+    
+    // TODO: implement
+    
+    // initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ),
       ),
-      body: selectedCategory != null ? ArticlesWidget() : CategoryWidget(
+      body: selectedCategory != null ? ArticlesWidget(categoryId: selectedCategory!.id,) : CategoryWidget(
         onCategoryClicked: chooseCategory,
       ),
     );
