@@ -22,4 +22,15 @@ class ApiManager {
     var articlesResponse = ArticlesResponse.fromJson(response.data);
     return articlesResponse;
   }
+  static Future<ArticlesResponse> searchArticles(String query) async {
+    final response = await dio.get(
+      '/v2/everything',
+      queryParameters: {
+        'apiKey': sources.apiKey,
+        'q': query,
+        'sortBy': 'publishedAt',
+      },
+    );
+    return ArticlesResponse.fromJson(response.data);
+  }
 }

@@ -15,6 +15,11 @@ abstract class AppTheme {
       )
     ),
     textTheme: TextTheme(
+      bodyMedium: TextStyle(
+        fontSize: 20.sp,
+        fontWeight: FontWeight.w500,
+        color: AppColors.lightPrimaryColor,
+      ),
         headlineMedium: TextStyle(
         fontSize: 24.sp,
         fontWeight: FontWeight.w700,

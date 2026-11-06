@@ -6,6 +6,8 @@ import 'package:news_app/core/resources/app_constants.dart';
 import 'package:news_app/core/resources/assets_manager.dart';
 import 'package:news_app/core/resources/strings_manager.dart';
 import 'package:news_app/models/category_model.dart';
+import 'package:news_app/models/sources/source.dart';
+import 'package:news_app/screens/home_screen/search_articles/search_articles.dart';
 import 'package:news_app/screens/widgets/app_drawer.dart';
 import 'package:news_app/screens/widgets/category_widgets/category_widget.dart';
 import 'package:news_app/screens/widgets/articles_widget/articleswidget.dart';
@@ -19,6 +21,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   CategoryModel? selectedCategory;
+  String? selectedSourceId;
   @override
   void initState() {
     
@@ -37,12 +40,23 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Padding(
           padding: REdgeInsets.symmetric(horizontal: 16),
           child: AppBar(
+            
             title: Text(
               selectedCategory != null
                   ? selectedCategory!.title
                   : StringsManager.home,
             ),
-            actions: [SvgPicture.asset(AssetsManager.search)],
+            actions: [
+                InkWell(
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (_) =>
+                          SearchArticles(),
+                    ),
+                  ),
+                  child: SvgPicture.asset(AssetsManager.search),
+                ),
+            ],
           ),
         ),
       ),

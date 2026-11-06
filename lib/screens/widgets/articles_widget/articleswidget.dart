@@ -7,7 +7,8 @@ import 'package:news_app/screens/widgets/articles_widget/widgets/article_list.da
 
 class ArticlesWidget extends StatefulWidget {
   final String categoryId;
-  const ArticlesWidget({super.key, required this.categoryId});
+  const ArticlesWidget({super.key, required this.categoryId,
+  });
 
   @override
   State<ArticlesWidget> createState() => _ArticlesWidgetState();
