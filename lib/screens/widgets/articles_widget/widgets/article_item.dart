@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:news_app/core/resources/app_colors.dart';
@@ -15,7 +16,7 @@ class ArticleItem extends StatelessWidget {
       onTap: () => showArticleSheet(context, article),
       child: Container(
         padding: REdgeInsets.all(8),
-      
+
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           border: Border.all(color: AppColors.lightPrimaryColor),
@@ -25,14 +26,18 @@ class ArticleItem extends StatelessWidget {
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(8.r),
-              child: Image.network(
-                article.urlToImage??'',
+              child: CachedNetworkImage(
+                imageUrl:  article.urlToImage ?? '',
+                placeholder: (context, url) => Center(child: CircularProgressIndicator(),),
+                errorWidget: (context, url, error) => Icon(Icons.error,color: Colors.red,size: 30.sp,),
+                 
                 height: 220.h,
                 fit: BoxFit.cover,
+                width: double.infinity,
               ),
             ),
             Text(
-              article.title??'',
+              article.title ?? '',
               style: Theme.of(
                 context,
               ).textTheme.headlineMedium?.copyWith(fontSize: 16.sp),
@@ -41,12 +46,12 @@ class ArticleItem extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "By : ${article.author??''}",
+                    "By : ${article.author ?? ''}",
                     style: Theme.of(context).textTheme.titleSmall,
                   ),
                 ),
                 Text(
-                  timeago.format(DateTime.parse(article.publishedAt??'')),
+                  timeago.format(DateTime.parse(article.publishedAt ?? '')),
                   style: Theme.of(context).textTheme.titleSmall,
                 ),
               ],

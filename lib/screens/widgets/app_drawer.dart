@@ -111,7 +111,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     Icons.arrow_drop_up,
                     color: Colors.white,
                   ),
-                  initialSelection: 'Dark',
+                  initialSelection: 'Light',
                   textStyle: Theme.of(
                     context,
                   ).textTheme.titleMedium?.copyWith(fontWeight: .w500),

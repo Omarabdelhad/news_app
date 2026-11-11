@@ -58,8 +58,7 @@ class _SearchArticlesState extends State<SearchArticles> {
             suffixIcon: IconButton(
               icon: const Icon(Icons.close),
               onPressed: () {
-                controller.clear();
-              },
+                controller.clear();              },
             ),
           ),
         ),
